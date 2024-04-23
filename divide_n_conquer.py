@@ -17,9 +17,6 @@ def min_edit_distance_dnc(s1, s2):
                min_edit_distance_dnc(s1[:-1], s2[:-1]) + cost)
 
 
-s1 = "aaaaaaaaaa"
-s2 = "bbbbbbbbbb"
-print(min_edit_distance_dnc(s1, s2))
 
 # def test_min_edit_distance_dnc():
 #     # Test case 1

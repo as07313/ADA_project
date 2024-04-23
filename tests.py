@@ -2,6 +2,7 @@ from dynamic_program import min_edit_distance_dp
 from recursive import med_recursive
 from dynamic_program_memo import min_edit_distance_memo
 from divide_n_conquer import min_edit_distance_dnc
+from dynamic_program_space import min_edit_distance_space_optimized
 
 def test_all_approaches():
     test_cases = [
@@ -23,6 +24,8 @@ def test_all_approaches():
         assert med_recursive(s1, s2) == expected
         assert min_edit_distance_memo(s1, s2) == expected
         assert min_edit_distance_dnc(s1, s2) == expected
+        assert min_edit_distance_space_optimized(s1, s2) == expected
+
     
     print("All tests passed")
 
