@@ -55,6 +55,7 @@ def min_edit_distance_dp(s1, s2):
                     ops[i][j] = "replace"
 
     # Backtrack to get the operations
+    # Backtrack to get the operations
     i, j = len_s1, len_s2
     align_s1, align_s2, operations = "", "", ""
     while i > 0 or j > 0:
@@ -73,20 +74,20 @@ def min_edit_distance_dp(s1, s2):
         elif ops[i][j] == "insert":
             align_s1 = "-" + align_s1
             align_s2 = s2[j - 1] + align_s2
-
+            operations = " " + operations
             j -= 1
-        else:
+        else:  # delete operation
             align_s1 = s1[i - 1] + align_s1
             align_s2 = "-" + align_s2
-
+            operations = " " + operations
             i -= 1
 
     return dp[len_s1][len_s2], align_s1, operations, align_s2
 
 
 # Test cases
-s1 = "kitten"
-s2 = "sitting"
+s1 = "Sunday"
+s2 = "Saturday"
 distance, align_s1, operations, align_s2 = min_edit_distance_dp(s1, s2)
 print(distance)
 print(align_s1)
