@@ -2,9 +2,7 @@
 Minimum edit distance using dynamic programming with memoization
 '''
 # memoization dictionary
-memo = {}
-
-def min_edit_distance_memo(s1, s2, memo):
+def min_edit_distance_memo(s1, s2, memo={}):
     
     n = len(s1)
     m = len(s2)
@@ -31,6 +29,8 @@ def min_edit_distance_memo(s1, s2, memo):
     
     return memo[(n, m)]
 
+
+# def test_min_edit_distance_memo():
 
 
 

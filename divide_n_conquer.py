@@ -17,40 +17,23 @@ def min_edit_distance_dnc(s1, s2):
                min_edit_distance_dnc(s1[:-1], s2[:-1]) + cost)
 
 
+def med_recursive(s1, s2):
 
-# def test_min_edit_distance_dnc():
-#     # Test case 1
-#     s1 = "AGTCT"
-#     s2 = "AGCT"
-#     distance = min_edit_distance_dnc(s1, s2)
-#     assert distance == 1
+    m = len(s1)
+    n = len(s2)
+    op = []
 
-#     # Test case 2
-#     s1 = "ACGTACGT"
-#     s2 = "ACGACGT"
-#     distance = min_edit_distance_dnc(s1, s2)
-#     assert distance == 1
-
-#     # Test case 3
-#     s1 = "AGTCT"
-#     s2 = "AGCT"
-#     distance = min_edit_distance_dnc(s1, s2)
-#     assert distance == 1
-
-#     # Test case 4
-#     s1 = "ACGTACGT"
-#     s2 = "ACGACGT"
-#     distance = min_edit_distance_dnc(s1, s2)
-#     assert distance == 1
-
-#     # Test case 5
-#     # all characters are different
-#     s1 = "ACGTACGT"
-#     s2 = "TGCA"
-#     distance = min_edit_distance_dnc(s1, s2)
-#     assert distance == 6
-
-#     print("All tests passed")
+    if m == 0:
+        return n
+    
+    if n == 0:
+ 
+        return m
+    if s1[m-1] == s2[n-1]:
+        return med_recursive(s1[:m-1], s2[:n-1])
+    
+    return 1 + min(med_recursive(s1[:m-1], s2[:n-1]), 
+                   med_recursive(s1[:m-1], s2),
+                   med_recursive(s1, s2[:n-1]))
 
 
-# test_min_edit_distance_dnc()
