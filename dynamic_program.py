@@ -8,23 +8,73 @@ def min_edit_distance_dp(s1, s2):
 
     # Create a table to store results of subproblems
     dp = [[0 for _ in range(len_s2 + 1)] for _ in range(len_s1 + 1)]
+    ops = [["" for _ in range(len_s2 + 1)] for _ in range(len_s1 + 1)]
 
     # Initialize the table
     for i in range(len_s1 + 1):
         dp[i][0] = i
+        ops[i][0] = "delete"
     for j in range(len_s2 + 1):
         dp[0][j] = j
+        ops[0][j] = "insert"
 
     # Fill in the table
     for i in range(1, len_s1 + 1):
         for j in range(1, len_s2 + 1):
+            delete = dp[i - 1][j] + 1
+            insert = dp[i][j - 1] + 1
+            match = dp[i - 1][j - 1]
+            mismatch = dp[i - 1][j - 1] + 1
             if s1[i - 1] == s2[j - 1]:
-                cost = 0
-            else:
-                cost = 1
-            dp[i][j] = min(dp[i - 1][j] + 1,
-                           dp[i][j - 1] + 1,
-                           dp[i - 1][j - 1] + cost)
+                dp[i][j] = match
+                ops[i][j] = "match"
 
-    return dp[len_s1][len_s2]
+            else:
+                dp[i][j] = min(delete, insert, mismatch)
+                if dp[i][j] == delete:
+                    ops[i][j] = "delete"
+                elif dp[i][j] == insert:
+                    ops[i][j] = "insert"
+                else:
+                    ops[i][j] = "replace"
+
+    # Backtrack to get the operations
+    i, j = len_s1, len_s2
+    align_s1, align_s2, operations = "", "", ""
+    while i > 0 or j > 0:
+        if ops[i][j] == "match":
+            align_s1 = s1[i - 1] + align_s1
+            align_s2 = s2[j - 1] + align_s2
+            operations = "|" + operations
+            i -= 1
+            j -= 1
+        elif ops[i][j] == "replace":
+            align_s1 = s1[i - 1] + align_s1
+            align_s2 = s2[j - 1] + align_s2
+            operations = "*" + operations
+            i -= 1
+            j -= 1
+        elif ops[i][j] == "insert":
+            align_s1 = "-" + align_s1
+            align_s2 = s2[j - 1] + align_s2
+
+            j -= 1
+        else:
+            align_s1 = s1[i - 1] + align_s1
+            align_s2 = "-" + align_s2
+
+            i -= 1
+
+    return dp[len_s1][len_s2], align_s1, operations, align_s2
+
+
+# Test cases
+s1 = "kitten"
+s2 = "sitting"
+distance, align_s1, operations, align_s2 = min_edit_distance_dp(s1, s2)
+print(distance)
+print(align_s1)
+print(operations)
+print(align_s2)
+
 
