@@ -23,3 +23,8 @@ def med_recursive(s1, s2):
 
 
 
+# Test cases
+s1 = "kitten"
+s2 = "sitting"
+print(med_recursive(s1, s2)) # 3
+

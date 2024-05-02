@@ -35,6 +35,11 @@ def min_edit_distance_memo(s1, s2, memo={}):
 
 
 
+# Path: dynamic_program_space.py
+s1 = "kitten"
+s2 = "sitting"
+
+print(min_edit_distance_memo(s1, s2,{})) # 3
 
 
     

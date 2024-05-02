@@ -20,9 +20,9 @@ def test_all_approaches():
     ]
 
     for s1, s2, expected in test_cases:
-        assert min_edit_distance_dp(s1, s2) == expected
+        assert min_edit_distance_dp(s1, s2)[0] == expected
         assert med_recursive(s1, s2) == expected
-        assert min_edit_distance_memo(s1, s2) == expected
+        assert min_edit_distance_memo(s1, s2, memo={}) == expected
         assert min_edit_distance_dnc(s1, s2) == expected
         assert min_edit_distance_space_optimized(s1, s2) == expected
 

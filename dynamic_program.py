@@ -86,12 +86,13 @@ def min_edit_distance_dp(s1, s2):
 
 
 # Test cases
-s1 = "Sunday"
-s2 = "Saturday"
+s1 = "ATTCGCTCTTTAAGCTATATTTGTTTCTGATAGTCTCCAGAACAA"
+s2 = "ACAAATATAACACAGGGAAGGTTAGGTATCTCTTTTTATTTGTAT"
 distance, align_s1, operations, align_s2 = min_edit_distance_dp(s1, s2)
 print(distance)
 print(align_s1)
 print(operations)
 print(align_s2)
+
 
 
